@@ -1,0 +1,290 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\textbf{Capitolo 1}
+
+\textbf{Introduzione}
+
+In questa relazione verr` a illustrato il progetto di un \textbf{sistema
+di monitoraggio della distanza basa-to sull'utilizzo di un sensore
+ultrasonico HC-SR04}, con visualizzazione dei dati in tempo reale
+tramite una dashboard web. Il progetto nasce dalla necessit` a di creare
+un sistema semplice ed efficace per monitorare la distanza di una porta,
+con l'obiettivo di visualizzare i dati raccolti in modo intuiti-vo e
+accessibile. Questa soluzione risponde a esigenze pratiche in contesti
+domestici e industriali, do-ve `\\
+e fondamentale avere un controllo preciso e costante di aperture e
+chiusure, garantendo sicurezza e automazione.
+
+La scelta di questo argomento ` e motivata dal mio profondo interesse
+per l'Internet of Things (IoT) e l'automazione, nonch´e dal desiderio di
+approfondire le mie competenze nella programmazione di mi-crocontrollori
+e nello sviluppo web. Viviamo in un'epoca in cui l'interconnessione tra
+dispositivi e la capacit` a di raccogliere e analizzare dati in tempo
+reale sono cruciali per migliorare la qualit` a della vita e
+l'efficienza dei processi produttivi. Gli obiettivi principali del
+progetto sono i seguenti:
+
+\begin{quote}
+• \textbf{Realizzare un sistema di rilevamento della distanza}:
+Utilizzando il \textbf{sensore HC-SR04} e un \textbf{microcontrollore
+ESP32}, il sistema sar` a in grado di misurare la distanza di un
+oggetto, come una porta, e rilevare eventuali cambiamenti.
+
+• \textbf{Trasmettere i dati rilevati a un server remoto}: I dati
+raccolti dal sensore verranno invia-ti a un server remoto, dove saranno
+memorizzati per un'analisi successiva. Questa funzionalit` permette di
+monitorare le attivit` a in tempo reale e di mantenere uno storico dei
+dati per future analisi e report.
+
+• \textbf{Visualizzare i dati in una dashboard web}: Una dashboard web
+permetter` a di monitora-re i dati in tempo reale, visualizzare lo
+storico delle misurazioni, applicare filtri per un'anali-si dettagliata
+e attivare o disattivare il sensore. La visualizzazione grafica e
+l'interattivit` a del-la dashboard sono fondamentali per rendere i dati
+facilmente comprensibili e utili per gli utenti finali.
+\end{quote}
+
+Il progetto si avvale di diverse tecnologie e componenti software per
+garantire il corretto funzionamen-to del sistema. Al fine di realizzare
+il progetto, ho deciso di ospitare il server remoto sul mio laptop con
+sistema operativo Linux Ubuntu, utilizzando una rete locale e il
+\textbf{server web Apache}. Questa scelta ` e stata dettata dalla
+necessit` a di avere un ambiente di sviluppo controllato e accessibile,
+senza l'obbligo di rendere il dispositivo continuamente raggiungibile
+dall'esterno. Questa configurazione offre la flessibilit` a necessaria
+per testare e sviluppare il sistema in un ambiente sicuro e ben
+conosciuto.
+
+Per quanto riguarda il database, la mia scelta ` e ricaduta su
+\textbf{MySQL}, in quanto rappresenta una solu-zione semplice e
+intuitiva per un novizio. MySQL ` e un sistema di gestione di database
+relazionale mol-to diffuso, che offre una vasta documentazione e una
+comunit` a di supporto attiva, rendendolo ideale per chi si avvicina per
+la prima volta a questo tipo di tecnologia. La capacit` a di gestire
+grandi quan-tit` a di dati e di eseguire query complesse in modo
+efficiente lo rende particolarmente adatto per questo progetto.
+
+Il processo di sviluppo del progetto ha comportato diverse fasi, ognuna
+delle quali ha richiesto l'ap-plicazione di competenze tecniche
+specifiche e la risoluzione di problemi pratici. Nella fase iniziale, `
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{6}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Introduzione}
+\end{quote}
+\end{minipage} \\
+\midrule()
+\endhead
+\bottomrule()
+\end{longtable}
+
+\begin{quote}
+stato necessario configurare correttamente l'hardware, assicurando che
+il sensore HC-SR04 fosse colle-gato in modo appropriato al
+microcontrollore ESP32. Successivamente, ` e stata sviluppata la logica
+di programmazione per raccogliere e trasmettere i dati, utilizzando il
+\textbf{linguaggio Arduino} e le librerie specifiche per Arduino e
+ESP32.
+
+La fase successiva ha coinvolto lo sviluppo del backend del server,
+utilizzando PHP per gestire le ri-chieste di dati e interagire con il
+database MySQL. ` E stato implementato un sistema di API per per-mettere
+la comunicazione tra il microcontrollore e il server, garantendo la
+sicurezza e l'integrit` a dei dati trasmessi.
+
+Infine, la creazione della dashboard web ha richiesto l'utilizzo di
+\textbf{HTML, CSS} e \textbf{JavaScript}, oltre a librerie come
+\textbf{Bootstrap} per il design responsive e \textbf{Chart.js} per la
+visualizzazione dei dati. La dash-board ` e stata progettata per essere
+\emph{user-friendly} e offrire funzionalit` a avanzate, come la
+possibilit` a di applicare filtri ai dati e di visualizzare grafici
+interattivi.
+\end{quote}
+
+\textbf{Capitolo 2}
+
+\textbf{Specifiche Tecniche}
+
+In questa sezione verranno descritte in dettaglio le specifiche tecniche
+del sistema di monitoraggio della distanza sviluppato. Il sistema ` e
+costituito da tre componenti principali: il microcontrollore ESP32 con
+il sensore ultrasonico HC-SR04, il server web e il database. Ognuno di
+questi componenti ` e stato progettato e configurato per garantire un
+funzionamento efficiente e affidabile del sistema complessivo.
+
+\textbf{2.1} \textbf{ESP32 e Sensore Ultrasonico HC-SR04}
+
+\includegraphics[width=3.13472in,height=3.83056in]{vertopal_ee0ccdaec0dc487cb04ef0b056b46c75/media/image1.png}
+
+\textbf{Figura 2.1:} Connessioni Elettriche HC-SR04 e ESP32
+
+\textbf{2.1.1 ESP32}
+
+L'\textbf{ESP32} ` e un microcontrollore potente e versatile, ampiamente
+utilizzato in applicazioni IoT grazie alle sue capacit` a di
+elaborazione e connettivit` a wireless integrate. Per questo progetto,
+l'ESP32 ` e stato scelto per le seguenti caratteristiche:
+
+\begin{quote}
+• \textbf{Doppio core Tensilica LX6}: Garantisce alte prestazioni e
+multitasking.
+
+• \textbf{Connettivit` a Wi-Fi e Bluetooth integrata}: Permette di
+trasmettere dati in modalit` a wire- less a un server remoto.
+\end{quote}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{8}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Specifiche Tecniche}
+\end{quote}
+\end{minipage} \\
+\midrule()
+\endhead
+\bottomrule()
+\end{longtable}
+
+\begin{quote}
+• \textbf{Ampia gamma di GPIO}: Supporta la connessione di vari sensori
+e attuatori.• \textbf{Supporto per librerie Arduino}: Facilita lo
+sviluppo del firmware.
+
+\textbf{2.1.2 Sensore Ultrasonico HC-SR04}\\
+Il sensore \textbf{HC-SR04} ` e utilizzato per misurare la distanza
+tramite onde ultrasoniche. Le specifiche tecniche del sensore includono:
+
+• \textbf{Tensione di funzionamento}: 5V DC.\\
+• \textbf{Corrente operativa}: 15mA.
+
+• \textbf{Frequenza ultrasonica}: 40kHz.
+
+• \textbf{Distanza di rilevamento}: 2cm - 400cm.\\
+• \textbf{Risoluzione}: 0.3cm.
+
+• \textbf{Angolo di misurazione}: 15 gradi.
+
+\textbf{2.1.3 Connessioni}\\
+Le connessioni tra l'ESP32 e il sensore HC-SR04 sono state configurate
+come segue:
+
+• \textbf{GND del sensore a GND dell'ESP32}.
+
+• \textbf{VCC del sensore a VCC dell'ESP32 (5V)}.\\
+• \textbf{Trigger del sensore a GPIO 2 dell'ESP32}.
+
+• \textbf{Echo del sensore a GPIO 2 dell'ESP32}.
+
+Un LED ` e collegato per indicare lo stato di apertura della porta:
+
+• \textbf{GND del LED a GND dell'ESP32}.\\
+• \textbf{Anodo del LED a GPIO 0 dell'ESP32}.
+
+\textbf{2.2} \textbf{Web Server}
+
+\textbf{2.2.1} \textbf{Configurazione del Server}\\
+Il server web ` e stato ospitato su un laptop con sistema operativo
+\emph{Linux Ubuntu}, utilizzando il server web \textbf{Apache}. Apache `
+e una scelta comune per applicazioni web grazie alla sua affidabilit` a,
+sicurezza e flessibilit` a. Le specifiche del server includono:
+
+• \textbf{Sistema Operativo}: \emph{Linux Ubuntu 20.04}.
+
+• \textbf{Server Web}: \emph{Apache 2.4.}
+
+• \textbf{PHP}: Versione 7.4, utilizzato per la logica di backend e
+l'interazione con il database.• \textbf{Configurazione di rete}: Il
+server ` e configurato per operare su una rete locale, garantendo
+l'accesso rapido e sicuro durante le fasi di sviluppo e test.
+\end{quote}
+
+\end{document}
